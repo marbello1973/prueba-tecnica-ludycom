@@ -1,0 +1,201 @@
+<h2>Formulario de registro</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form
+      [formGroup]="myForm"
+      (ngSubmit)="onSubmit()"
+      [formControl]="newForm"
+      autocomplete="off"
+      [(ngModel)]="newForm"
+    >
+      <!-- Nombre -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Nombre del usuario"
+          />
+
+          <span *ngIf="isValidField('name')" class="form-text text-danger">
+            Debe de ser en formato de nombre
+          </span>
+        </div>
+      </div>
+      <!-- Apellidos -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Apellidos</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Apellido del usuario"
+          />
+
+          <span *ngIf="isValidField('lastName')" class="form-text text-danger">
+            Debe de ser en formato de apellido
+          </span>
+        </div>
+      </div>
+      <!-- Fecha de nacimiento -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+        <div class="col-sm-9">
+          <input
+            type="date"
+            class="form-control"
+            formControlName="age"
+            placeholder="Fecha de nacimiento"
+          />
+
+          <span *ngIf="isValidField('age')" class="form-text text-danger">
+            Debe de ser en formato fecha
+          </span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email del usuario"
+          />
+          <span *ngIf="isValidField('email')" class="form-text text-danger">
+            mensaje de error del email
+          </span>
+        </div>
+      </div>
+
+      <!-- numero de documento -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Numero de documento</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="document"
+            placeholder="Numero de documento"
+          />
+          <span *ngIf="isValidField('document')" class="form-text text-danger">
+            El debe digitar un numero de documento
+          </span>
+        </div>
+      </div>
+
+      <!-- salarrio -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Salario</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="salari"
+            placeholder="Salario"
+          />
+
+          <span *ngIf="isValidField('salari')" class="form-text text-danger">
+            Debeb digitar un salario
+          </span>
+        </div>
+      </div>
+
+      <!-- Estado  -->
+      <!-- Radio -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Estado</label>
+        <div class="col-sm-9">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="M"
+              id="radioMasculino"
+            />
+            <label class="form-check-label" for="radioMasculino">
+              Activo
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="F"
+              id="radioFemenino"
+            />
+            <label class="form-check-label" for="radioFemenino">
+              Inactivo
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            (click)="addUsers()"
+            class="btn btn-primary float-end"
+            type="submit"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr />
+
+<form autocomplete="off">
+  <!-- Agregar Favorito -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Buscar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control" placeholder="Buscar" />
+
+        <button class="btn btn-outline-primary" type="button">Buscar</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<table *ngFor="let user of users.controls; let i = index" class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha de nacimiento</th>
+      <th>Email</th>
+      <th>Numero documento</th>
+      <th>Salario</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in clientes">
+      <td>{{ myForm.value.name }}</td>
+      <td>{{ myForm.value.lastName }}</td>
+      <td>{{ myForm.value.age }}</td>
+      <td>{{ myForm.value.email }}</td>
+      <td>{{ myForm.value.document }}</td>
+      <td>{{ myForm.value.salari }}</td>
+      <td>{{ myForm.value.isActive }}</td>
+      <td>
+        <button class="btn btn-info">Editar</button>
+      </td>
+      <td>
+        <button class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
